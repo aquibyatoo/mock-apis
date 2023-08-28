@@ -1,9 +1,12 @@
 module.exports = () => {
   const { faker, fa } = require("@faker-js/faker");
   var _ = require("lodash");
+  var apiEnums = require("./enums");
+
+  const cardStatusEnums = apiEnums.cardStatus;
 
   return {
-    cards: _.times(10, function (n) {
+    cards: _.times(100, function (n) {
       return {
         cardId: faker.string.nanoid(),
         data: {
@@ -24,7 +27,7 @@ module.exports = () => {
             },
           },
           attributes: {
-            status: "ACTIVE",
+            status: cardStatusEnums[_.random(0, cardStatusEnums.length)],
             card_type: "VISA_CREDIT",
             scheme: "VISA",
             is_virtual: false,
